@@ -14,7 +14,6 @@
     <groupId>com.lenovo.training</groupId>
     <artifactId>CORE</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
