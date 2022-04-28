@@ -25,5 +25,5 @@
 /.nb-gradle/
 
 ##
-/CORE/target
-/EDGE/target/
+/core/target
+.env
