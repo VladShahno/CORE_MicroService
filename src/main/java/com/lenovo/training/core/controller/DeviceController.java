@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("devices")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8081/", maxAge = 3600)
 @AllArgsConstructor
 @Validated
 public class DeviceController {

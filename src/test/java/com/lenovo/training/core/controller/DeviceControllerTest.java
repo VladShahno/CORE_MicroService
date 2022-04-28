@@ -3,9 +3,11 @@ package com.lenovo.training.core.controller;
 import com.lenovo.training.core.entity.Device;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 
@@ -31,6 +33,12 @@ public class DeviceControllerTest extends ControllerTestBaseClass {
         "Iphone 7");
     Device secondDevice = new Device(SECOND_DEVICE_SERIAL_NUMBER, "Iphone",
         "Iphone 8");
+
+    @BeforeEach
+    void setUp() {
+        Mockito.when(accessToken.getPreferredUsername()).thenReturn("shakhno");
+        Mockito.when(authService.getToken()).thenReturn(accessToken);
+    }
 
     @AfterEach
     void clean() {

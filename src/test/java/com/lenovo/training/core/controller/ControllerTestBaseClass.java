@@ -1,6 +1,8 @@
 package com.lenovo.training.core.controller;
 
+import com.lenovo.training.core.service.AuthService;
 import org.junit.jupiter.api.TestInstance;
+import org.keycloak.representations.AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -25,9 +27,12 @@ public abstract class ControllerTestBaseClass {
 
     @Autowired
     public MockMvc mockMvc;
-
     @Autowired
     public MongoTemplate mongoTemplate;
+    @Autowired
+    public AuthService authService;
+    @Autowired
+    public AccessToken accessToken;
 
     public ResultActions getResponse(HttpMethod method, String endpoint, String contentData,
                                      HttpStatus httpStatus) throws Exception {
