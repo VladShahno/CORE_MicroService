@@ -25,6 +25,8 @@
         <jacoco.version>0.8.7</jacoco.version>
         <mongock.version>5.0.35</mongock.version>
         <keycloak.version>13.0.0</keycloak.version>
+        <minio.version>8.3.9</minio.version>
+        <okhttp3.version>4.9.3</okhttp3.version>
     </properties>
 
     <dependencies>
@@ -108,6 +110,18 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>${minio.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp3.version}</version>
         </dependency>
 
     </dependencies>
