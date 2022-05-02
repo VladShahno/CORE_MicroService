@@ -1,5 +1,6 @@
 package com.lenovo.training.core.entity;
 
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,16 +15,15 @@ public class Device {
 
     @Id
     private String id;
-
     private String serialNumber;
-
     private String model;
-
     private String description;
+    LocalDate creationDate;
 
     public Device(String serialNumber, String model, String description) {
         this.serialNumber = serialNumber;
         this.model = model;
         this.description = description;
+        this.creationDate = LocalDate.now();
     }
 }

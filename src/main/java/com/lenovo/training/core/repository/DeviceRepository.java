@@ -1,6 +1,7 @@
 package com.lenovo.training.core.repository;
 
 import com.lenovo.training.core.entity.Device;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -16,4 +17,6 @@ public interface DeviceRepository extends MongoRepository<Device, String> {
     List<Device> findAllByModel(String model);
 
     List<Device> findBySerialNumberIn(List<String> serialNumber);
+
+    List<Device> findAllByCreationDate(LocalDate date);
 }

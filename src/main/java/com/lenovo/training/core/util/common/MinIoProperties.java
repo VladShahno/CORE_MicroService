@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 @Data
 public class MinIoProperties {
 
-    String accessKey;
-    String accessSecret;
-    String url;
-    String bucketName;
+    private String key;
+    private String secret;
+    private String url;
+    private String bucket;
 }

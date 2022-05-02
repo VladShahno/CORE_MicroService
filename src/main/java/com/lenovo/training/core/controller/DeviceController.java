@@ -40,14 +40,6 @@ public class DeviceController {
         return deviceService.addDevice(deviceRequest);
     }
 
-    @PostMapping("/all")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    @ApiOperation("Adds new devices from the list")
-    public List<Device> createDevices(@RequestBody List<@Valid DeviceRequest> deviceRequestList) {
-        return deviceService.addDevicesList(deviceRequestList);
-    }
-
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
