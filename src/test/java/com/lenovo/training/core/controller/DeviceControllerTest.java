@@ -1,4 +1,3 @@
-/*
 package com.lenovo.training.core.controller;
 
 import com.lenovo.training.core.entity.Device;
@@ -267,4 +266,4 @@ public class DeviceControllerTest extends ControllerTestBaseClass {
                 HttpStatus.BAD_REQUEST);
         }
     }
-}*/
+}
