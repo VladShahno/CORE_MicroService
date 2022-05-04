@@ -3,7 +3,7 @@ package com.lenovo.training.core.service;
 import com.lenovo.training.core.payload.DeviceRequest;
 import java.util.List;
 
-public interface ConsumerService {
+public interface KafkaConsumerService {
 
-    void consume(List<DeviceRequest> dto);
+    void consume(List<DeviceRequest> deviceRequests);
 }

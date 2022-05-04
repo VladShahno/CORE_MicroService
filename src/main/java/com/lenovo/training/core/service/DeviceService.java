@@ -19,4 +19,6 @@ public interface DeviceService {
     List<Device> getAllDevices(String model);
 
     List<Device> addDevicesList(List<DeviceRequest> devices);
+
+    List<Device> getAllDevicesByCurrentDay();
 }

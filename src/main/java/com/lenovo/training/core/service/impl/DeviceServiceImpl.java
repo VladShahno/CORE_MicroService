@@ -6,6 +6,7 @@ import com.lenovo.training.core.exception.ResourceNotFoundException;
 import com.lenovo.training.core.payload.DeviceRequest;
 import com.lenovo.training.core.repository.DeviceRepository;
 import com.lenovo.training.core.service.DeviceService;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -103,6 +104,12 @@ public class DeviceServiceImpl implements DeviceService {
                 Arrays.toString(alreadyExist.stream().map(
                     Device::getSerialNumber).toArray()));
         }
+    }
+
+    @Override
+    public List<Device> getAllDevicesByCurrentDay() {
+        LOGGER.info("Getting all devices for - " + LocalDate.now());
+        return deviceRepository.findAllByCreationDate(LocalDate.now());
     }
 
     private Device saveDevice(Device device, DeviceRequest deviceRequest) {
