@@ -89,7 +89,7 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public List<Device> addDevicesList(List<DeviceRequest> deviceRequestList) {
+    public void addDevicesList(List<DeviceRequest> deviceRequestList) {
 
         List<Device> alreadyExist =
             deviceRepository.findBySerialNumberIn(deviceRequestList.stream().map(
@@ -97,7 +97,7 @@ public class DeviceServiceImpl implements DeviceService {
 
         if (alreadyExist.isEmpty()) {
             LOGGER.info("Creating devices from List");
-            return saveDevicesList(getUniqueDeviceFromList(deviceRequestList));
+            saveDevicesList(getUniqueDeviceFromList(deviceRequestList));
         } else {
             LOGGER.error("Can't create device with existing serial number");
             throw new ResourceExistsException(SERIAL_NUMBER +

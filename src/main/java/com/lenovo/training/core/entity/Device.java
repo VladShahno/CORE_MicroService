@@ -18,7 +18,7 @@ public class Device {
     private String serialNumber;
     private String model;
     private String description;
-    LocalDate creationDate;
+    private LocalDate creationDate;
 
     public Device(String serialNumber, String model, String description) {
         this.serialNumber = serialNumber;

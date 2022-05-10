@@ -2,7 +2,7 @@ package com.lenovo.training.core.controller;
 
 import com.lenovo.training.core.entity.Device;
 import com.lenovo.training.core.payload.DeviceRequest;
-import com.lenovo.training.core.service.impl.DeviceServiceImpl;
+import com.lenovo.training.core.service.DeviceService;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import javax.validation.Valid;
@@ -10,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,12 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("devices")
-@CrossOrigin(origins = "http://localhost:8081/", maxAge = 3600)
 @AllArgsConstructor
 @Validated
 public class DeviceController {
 
-    private final DeviceServiceImpl deviceService;
+    private final DeviceService deviceService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

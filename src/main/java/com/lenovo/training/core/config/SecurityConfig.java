@@ -1,5 +1,9 @@
 package com.lenovo.training.core.config;
 
+import com.lenovo.training.core.util.common.UrlProperties;
+import java.util.Collections;
+import java.util.List;
+import lombok.AllArgsConstructor;
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
@@ -17,11 +21,15 @@ import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
+import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
 @EnableWebSecurity
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
+@AllArgsConstructor
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
+
+    private UrlProperties urlProperties;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) {
@@ -45,7 +53,14 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
-        http
+        http.cors().configurationSource(request -> {
+                CorsConfiguration corsConfiguration = new CorsConfiguration();
+                corsConfiguration.applyPermitDefaultValues();
+                corsConfiguration.setAllowedOrigins(
+                    Collections.singletonList(urlProperties.getBase()));
+                corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+                return corsConfiguration;
+            }).and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .csrf().disable()

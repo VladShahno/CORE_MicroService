@@ -12,7 +12,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: "${MONGODB_PASSWORD}"
 
   core:
-    build: ../core
+    build: .
     ports:
       - "8082:8082"
     depends_on:
@@ -39,4 +39,3 @@ networks:
   default:
     external:
       name: external-core_edge
-
