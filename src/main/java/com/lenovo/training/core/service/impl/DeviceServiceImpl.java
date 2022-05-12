@@ -7,7 +7,7 @@ import com.lenovo.training.core.payload.DeviceRequest;
 import com.lenovo.training.core.repository.DeviceRepository;
 import com.lenovo.training.core.service.DeviceService;
 import java.time.LocalDate;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -91,19 +91,18 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public void addDevicesList(List<DeviceRequest> deviceRequestList) {
 
-        List<Device> alreadyExist =
-            deviceRepository.findBySerialNumberIn(deviceRequestList.stream().map(
-                DeviceRequest::getSerialNumber).collect(Collectors.toList()));
+        List<DeviceRequest> uniqueDevices = new ArrayList<>();
 
-        if (alreadyExist.isEmpty()) {
-            LOGGER.info("Creating devices from List");
-            saveDevicesList(getUniqueDeviceFromList(deviceRequestList));
-        } else {
-            LOGGER.error("Can't create device with existing serial number");
-            throw new ResourceExistsException(SERIAL_NUMBER +
-                Arrays.toString(alreadyExist.stream().map(
-                    Device::getSerialNumber).toArray()));
-        }
+        getUniqueDeviceFromList(deviceRequestList)
+            .forEach(
+                deviceRequest -> {
+                    if (!deviceRepository.existsBySerialNumber(deviceRequest.getSerialNumber())) {
+                        uniqueDevices.add(deviceRequest);
+                    }
+                }
+            );
+        LOGGER.info("Saving devices");
+        saveDevicesList(uniqueDevices);
     }
 
     @Override
@@ -119,8 +118,8 @@ public class DeviceServiceImpl implements DeviceService {
         return deviceRepository.save(device);
     }
 
-    private List<Device> saveDevicesList(List<DeviceRequest> deviceRequestList) {
-        return deviceRepository.saveAll(deviceRequestList.stream().map(
+    private void saveDevicesList(List<DeviceRequest> deviceRequestList) {
+        deviceRepository.saveAll(deviceRequestList.stream().map(
             deviceRequest -> new Device(deviceRequest.getSerialNumber(), deviceRequest.getModel(),
                 deviceRequest.getDescription())).collect(Collectors.toList()));
     }

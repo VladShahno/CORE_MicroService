@@ -1,5 +1,6 @@
 package com.lenovo.training.core.config;
 
+import com.lenovo.training.core.entity.Role;
 import com.lenovo.training.core.util.common.UrlProperties;
 import java.util.Collections;
 import java.util.List;
@@ -65,7 +66,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/devices/**").authenticated()
+            .antMatchers("/devices/**").hasRole(String.valueOf(Role.EDGE_CLIENT_ROLE))
             .anyRequest().permitAll();
     }
 }

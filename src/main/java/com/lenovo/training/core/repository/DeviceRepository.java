@@ -16,7 +16,5 @@ public interface DeviceRepository extends MongoRepository<Device, String> {
 
     List<Device> findAllByModel(String model);
 
-    List<Device> findBySerialNumberIn(List<String> serialNumber);
-
     List<Device> findAllByCreationDate(LocalDate date);
 }
