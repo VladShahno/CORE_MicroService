@@ -25,7 +25,7 @@ public class KafkaConsumerServiceImpl implements KafkaConsumerService {
     private ObjectMapper objectMapper;
 
     @Override
-    @KafkaListener(id = "1", topics = "devices")
+    @KafkaListener(id = "1", topics = "xog4oppz-devices")
     public void consume(List<@Valid DeviceRequest> deviceRequests) {
         LOGGER.info("Consuming " + deviceRequests);
         List<DeviceRequest> requestsToSave = objectMapper.convertValue(deviceRequests,
