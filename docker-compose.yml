@@ -35,6 +35,15 @@ services:
       MINIO_ROOT_PASSWORD: "${MINIO_ROOT_PASSWORD}"
     command: server /data --console-address ":9001"
 
+  keycloak:
+    user: root
+    image: jboss/keycloak
+    environment:
+        - KEYCLOAK_PASSWORD=admin
+        - KEYCLOAK_USER=admin
+    ports:
+        - "9990:8080"
+
 networks:
   default:
     external:
