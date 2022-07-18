@@ -66,7 +66,8 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/devices/**").hasRole(String.valueOf(Role.EDGE_CLIENT_ROLE))
+            //.antMatchers("/devices/**").hasRole(String.valueOf(Role.EDGE_CLIENT_ROLE))
+            .antMatchers("/devices/**").permitAll()
             .antMatchers("/swagger-ui.html#/ ").permitAll()
             .anyRequest().permitAll();
     }
