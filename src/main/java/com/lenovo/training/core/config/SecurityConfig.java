@@ -67,6 +67,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
             .csrf().disable()
             .authorizeRequests()
             .antMatchers("/devices/**").hasRole(String.valueOf(Role.EDGE_CLIENT_ROLE))
+            .antMatchers("/swagger-ui.html#/ ").permitAll()
             .anyRequest().permitAll();
     }
 }

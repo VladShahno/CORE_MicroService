@@ -20,8 +20,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
         <lombok.version>1.18.22</lombok.version>
-        <springfox-swagger2.version>3.0.0</springfox-swagger2.version>
-        <springfox-swagger-ui.version>3.0.0</springfox-swagger-ui.version>
+        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+        <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
         <jacoco.version>0.8.7</jacoco.version>
         <mongock.version>5.0.35</mongock.version>
         <keycloak.version>13.0.0</keycloak.version>
